@@ -37,7 +37,7 @@ class Step1 extends Component{
  render(){
      return(
         <div>
-            Enter Name
+            Enter Name 
             <input id="name" name="name" value={this.state.name} onChange={(e) => {this.handleChange(e)} } /> <br></br>
             <button onClick={(e) => this.sendNext(e)}>next</button>
             {this.props.properties.pageNo>1 && <button onClick={(e) => this.sendPrev(e)}>Prev</button>}
