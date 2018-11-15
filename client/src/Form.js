@@ -131,7 +131,7 @@ class Form extends Component {
             <br></br>
             <input name="amount" id="amount" placeholder="amount" value={this.state.amount} onChange={(e)=>{this.modify(e)}} />
             <br></br>
-            <Button type="primary" onClick={(e)=> {this.update(e)} }>update</Button>
+            <Button type="primary" onClick={(e)=> {this.update(e)} }>update info</Button>
             <Button type="primary" value="submit" onClick={(e) => {this.handleSubmit(e)}}>submit</Button> 
           </form>
       </div>
