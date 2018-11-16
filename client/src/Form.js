@@ -11,7 +11,7 @@ import Checkingrouter from "./Checkingrouter"
 import './App.css';
 import 'antd/dist/antd.css';
 import { Button } from 'antd'; 
-
+let  editing = false;
 class Form extends Component {
   constructor(props){
     super(props);
@@ -20,7 +20,32 @@ class Form extends Component {
       idno  : '',
       amount:'',
       infoArray: []
+     
+     
     }
+    if(this.props.match.url.indexOf('edit')>0){
+      editing=true;
+      const name = this.props.match.params.name;
+      let url="http://localhost:5000/getProfile/" +name;
+      let that=this;
+      fetch(url)
+      .then((response)=>{
+        return response.json();
+      })
+      .then((data)=>{
+        that.setState({
+          name : data[0].name,
+          idno : data[0].idno,
+          amount : data[0].amount
+          
+        })
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
+
+    
      
   }
   
@@ -29,6 +54,8 @@ class Form extends Component {
   }
   
   getInfo = ()=>{
+
+    
     fetch("http://localhost:5000/getInfo")
     .then((response)=>{
       return response.json();
@@ -51,6 +78,7 @@ class Form extends Component {
   }
 
   handleSubmit = (e)=>{
+    if(!editing){
     fetch("http://localhost:5000/addInfo", {
                     method: 'POST',
                     headers: {
@@ -61,6 +89,7 @@ class Form extends Component {
                        name : this.state.name,
                        idno: this.state.idno,
                        amount : this.state.amount
+                       
                     })
 
      })
@@ -75,7 +104,23 @@ class Form extends Component {
      .catch(err =>{
        console.log('error');
      })
-
+    }
+    else{
+      e.preventDefault();
+      fetch('http://localhost:5000/update',{
+        method :'put',
+        headers: {
+            'Content-Type': 'Application/json',
+             'Accept': 'Application/json'
+        },
+        body : JSON.stringify(this.state)
+      
+    })
+    .then((res)=>{
+        console.log(res);
+        this.getInfo();
+    })
+  }
 
   }
   handleDelete = (uid,e)=>{
@@ -120,7 +165,10 @@ class Form extends Component {
 
 
   render() {
+   
     return (
+      <div>
+      {this.state && ((editing && this.state.name) || !editing) &&
       <div>
       <div className="App">
           <form onSubmit={(e)=>this.handleSubmit(e)}>
@@ -131,7 +179,7 @@ class Form extends Component {
             <br></br>
             <input name="amount" id="amount" placeholder="amount" value={this.state.amount} onChange={(e)=>{this.modify(e)}} />
             <br></br>
-            <Button type="primary" onClick={(e)=> {this.update(e)} }>update info</Button>
+            {/* <Button type="primary" onClick={(e)=> {this.update(e)} }>update info</Button> */}
             <Button type="primary" value="submit" onClick={(e) => {this.handleSubmit(e)}}>submit</Button> 
           </form>
       </div>
@@ -144,6 +192,9 @@ class Form extends Component {
         )}
       </div>
       </div>
+      }
+      </div>
+
     );
   }
 }

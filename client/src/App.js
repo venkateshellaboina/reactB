@@ -16,6 +16,8 @@ import './App.css';
 import AntdForm from "./AntdForm";
 import ImageForm from './ImageForm';
 import ExtractData from "./ExtractData";
+import TabBar from "./TabBar";
+import Carsel from "./Carsel";
 
 class App extends Component {
   render(){
@@ -27,7 +29,10 @@ class App extends Component {
           <Route path="/error"  component={Checkingrouter} />
           <Route path="/steps" component={Steps} />
           <Route path="/antd" render={(props) => <AntdForm {...props}/> }/>
+          <Route path="/tabs" component={TabBar} />
           <Route path="/image" render={(props) => <ImageForm {...props}/> }/>
+          <Route path="/carsel" render={(props) => <Carsel {...props} />} />
+          <Route path="/:name/edit" render={(props) => <Form {...props}/>} />
           <Route path='/:name' render={(props) => <ExtractData {...props}/>} />
           <Route component={NoMatch} />
         </Switch>

@@ -7,8 +7,10 @@ import {
     Redirect,
     withRouter
   } from 'react-router-dom';
-  import logo from './logo.svg';
-  import Form from "./Form";
+import logo from './logo.svg';
+
+import { Container, Row, Col, Badge } from 'reactstrap';
+import { Form, Icon, Input, Button, Checkbox ,Card} from 'antd'; 
 import NoMatch from './NoMatch';
 
 
@@ -66,7 +68,9 @@ class ExtractData extends Component{
       
 
         <div>
+             <Link to={`${this.props.match.url}/edit`}><Button type="primary">Edit</Button></Link>
             <div>
+           
             {this.state.dataArray.length>0 && 
              this.state.dataArray.map((dataElement)=>
                 <div>
