@@ -114,3 +114,25 @@ app.post('/sendData',(req,res)=>{
       }
     })
 })
+
+app.get('/getProfile/:name',(req,res)=>{
+    console.log("getting profile");
+    let name = req.params.name;
+    InfoModel.find({ "name" : name})
+    .exec()
+    .then((dataArr)=>{
+        if(dataArr.length>0){
+        res.status(500).send(dataArr);
+        res.end();
+        }
+        else{
+            res.status(404).send("error");
+            res.end();
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.status(404).send(err);
+    })
+
+})

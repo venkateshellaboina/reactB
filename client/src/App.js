@@ -15,7 +15,7 @@ import Steps from "./Steps"
 import './App.css';
 import AntdForm from "./AntdForm";
 import ImageForm from './ImageForm';
-
+import ExtractData from "./ExtractData";
 
 class App extends Component {
   render(){
@@ -28,6 +28,7 @@ class App extends Component {
           <Route path="/steps" component={Steps} />
           <Route path="/antd" render={(props) => <AntdForm {...props}/> }/>
           <Route path="/image" render={(props) => <ImageForm {...props}/> }/>
+          <Route path='/:name' render={(props) => <ExtractData {...props}/>} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
