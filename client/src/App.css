@@ -30,3 +30,29 @@
     transform: rotate(360deg);
   }
 }
+
+.show-media {
+  height: 75px;
+  width: 75px;
+  padding: 2px;
+  margin: 2px;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #62A8EA;
+  display: inline-block;
+  z-index: 1;
+}
+
+.dropzone-remove {
+  top: 0;
+  right: 0;
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  background-color: white;
+}
+.uploadImg {
+  max-height: 100px;
+  z-index: -1;
+} 

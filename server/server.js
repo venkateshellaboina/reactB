@@ -26,7 +26,8 @@ app.use(function(req, res, next) {
 var InfoSchema= new Schema({
     name : {type:String},
     idno: {type:String},
-    amount: {type:String}
+    amount: {type:String},
+    avatar : {type:String}
 })
 
 var InfoModel = mongoose.model('info',InfoSchema);
@@ -48,7 +49,8 @@ app.post('/addInfo',(req,res)=>{
     var item= new InfoModel({
         name : req.body.name,
         idno : req.body.idno,
-        amount : req.body.amount
+        amount : req.body.amount,
+        avatar : req.body.avatar
     })
     item.save((err,result)=>{
       if(err){

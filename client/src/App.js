@@ -14,6 +14,7 @@ import NoMatch from "./NoMatch";
 import Steps from "./Steps"
 import './App.css';
 import AntdForm from "./AntdForm";
+import ImageForm from './ImageForm';
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/error"  component={Checkingrouter} />
           <Route path="/steps" component={Steps} />
           <Route path="/antd" render={(props) => <AntdForm {...props}/> }/>
+          <Route path="/image" render={(props) => <ImageForm {...props}/> }/>
           <Route component={NoMatch} />
         </Switch>
       </Router>
