@@ -52,7 +52,9 @@
   border-radius: 7px;
   background-color: white;
 }
-.uploadImg {
+
+.uploadImg 
+{
   max-height: 100px;
   z-index: -1;
 } 

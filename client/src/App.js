@@ -18,6 +18,8 @@ import ImageForm from './ImageForm';
 import ExtractData from "./ExtractData";
 import TabBar from "./TabBar";
 import Carsel from "./Carsel";
+import TimeComponent from "./TimeComponent"
+import BasicLayout from './BasicLayout';
 
 class App extends Component {
   render(){
@@ -32,6 +34,8 @@ class App extends Component {
           <Route path="/tabs" component={TabBar} />
           <Route path="/image" render={(props) => <ImageForm {...props}/> }/>
           <Route path="/carsel" render={(props) => <Carsel {...props} />} />
+          <Route path="/layout"  render={(props) => <BasicLayout {...props} />}  />
+          <Route path="/time" render={(props) => <TimeComponent {...props}/>} />
           <Route path="/:name/edit" render={(props) => <Form {...props}/>} />
           <Route path='/:name' render={(props) => <ExtractData {...props}/>} />
           <Route component={NoMatch} />
